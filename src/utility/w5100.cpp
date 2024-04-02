@@ -37,7 +37,7 @@
 // If variant.h or other headers define these names
 // use them if none of the other cases match
 #elif defined(PIN_SPI_SS)
-#define SS_PIN_DEFAULT  PIN_SPI_SS
+#define SS_PIN_DEFAULT  PD7
 #elif defined(CORE_SS0_PIN)
 #define SS_PIN_DEFAULT  CORE_SS0_PIN
 
@@ -100,7 +100,9 @@ uint8_t W5100Class::init(void)
 	// reset time, this can be edited or removed.
 	delay(560);
 	//Serial.println("w5100 init");
-
+	SPI.setMISO(PB4);
+	SPI.setMOSI(PB5);
+	SPI.setSCLK(PB3);
 	SPI.begin();
 	initSS();
 	resetSS();
